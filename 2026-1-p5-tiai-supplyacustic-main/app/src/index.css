@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AcustiAI Design System - Modern Architecture Theme */
+
+@layer base {
+  :root {
+    /* Core backgrounds */
+    --background: 220 20% 97%;
+    --foreground: 220 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
+
+    /* Primary: Deep Blue */
+    --primary: 217 89% 40%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 217 89% 55%;
+    --primary-glow: 217 89% 65%;
+
+    /* Secondary: Blue-Gray */
+    --secondary: 215 25% 93%;
+    --secondary-foreground: 220 25% 25%;
+
+    /* Muted */
+    --muted: 215 20% 94%;
+    --muted-foreground: 215 15% 50%;
+
+    /* Accent: Electric Blue */
+    --accent: 199 95% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Success / Warning */
+    --success: 152 68% 35%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 217 89% 40%;
+
+    --radius: 0.625rem;
+
+    /* Architecture-specific tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(217 89% 40%), hsl(199 95% 45%));
+    --card-gradient: linear-gradient(145deg, hsl(0 0% 100%), hsl(215 25% 97%));
+    --sidebar-gradient: linear-gradient(180deg, hsl(220 35% 14%), hsl(220 30% 10%));
+    --glow-primary: 0 0 30px hsl(217 89% 40% / 0.25);
+    --glow-accent: 0 0 20px hsl(199 95% 45% / 0.20);
+    --shadow-card: 0 1px 3px hsl(220 25% 12% / 0.06), 0 4px 20px hsl(220 25% 12% / 0.08);
+    --shadow-elevated: 0 8px 32px hsl(220 25% 12% / 0.12), 0 2px 8px hsl(220 25% 12% / 0.08);
+
+    /* Sidebar */
+    --sidebar-background: 220 35% 14%;
+    --sidebar-foreground: 215 30% 82%;
+    --sidebar-primary: 217 89% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 30% 20%;
+    --sidebar-accent-foreground: 215 30% 90%;
+    --sidebar-border: 220 25% 20%;
+    --sidebar-ring: 217 89% 55%;
+
+    /* Font families */
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  .dark {
+    --background: 220 35% 8%;
+    --foreground: 215 25% 90%;
+
+    --card: 220 30% 11%;
+    --card-foreground: 215 25% 90%;
+
+    --popover: 220 30% 11%;
+    --popover-foreground: 215 25% 90%;
+
+    --primary: 217 89% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 25% 18%;
+    --secondary-foreground: 215 25% 75%;
+
+    --muted: 220 25% 16%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 199 95% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 25% 20%;
+    --input: 220 25% 20%;
+    --ring: 217 89% 55%;
+
+    --shadow-card: 0 1px 3px hsl(0 0% 0% / 0.3), 0 4px 20px hsl(0 0% 0% / 0.2);
+    --shadow-elevated: 0 8px 32px hsl(0 0% 0% / 0.4), 0 2px 8px hsl(0 0% 0% / 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  /* Consistent visible focus ring across all interactive elements.
+     Uses --ring token to match primary color for AA contrast. */
+  :where(a, button, [role="button"], [role="tab"], [role="menuitem"],
+         input, select, textarea, summary, [tabindex]):focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    border-radius: var(--radius);
+  }
+
+  /* Skip link — visible only when focused via keyboard */
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed top-3 left-3 z-[100] px-4 py-2 rounded-md
+           bg-primary text-primary-foreground font-medium shadow-elevated;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .gradient-hero {
+    background: var(--hero-gradient);
+  }
+
+  .gradient-card {
+    background: var(--card-gradient);
+  }
+
+  .gradient-sidebar {
+    background: var(--sidebar-gradient);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+
+  .text-gradient {
+    background: var(--hero-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Scrollbar styling */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 2px;
+  }
+
+  /* Loading shimmer */
+  .shimmer {
+    background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--secondary)) 50%, hsl(var(--muted)) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Pulse glow for active elements */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 hsl(217 89% 40% / 0.4); }
+    50% { box-shadow: 0 0 0 8px hsl(217 89% 40% / 0); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Wave animation for analysis */
+  @keyframes wave {
+    0%, 100% { transform: scaleY(0.5); }
+    50% { transform: scaleY(1); }
+  }
+
+  .wave-bar {
+    animation: wave 1s ease-in-out infinite;
+  }
+  .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+  .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+  .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+  .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+}
